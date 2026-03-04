@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Registration Form</title>
+
+<style>
+
+/* Page Style */
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#4facfe,#00f2fe);
+    margin:0;
+    padding:0;
+}
+
+/* Form Container */
+.container{
+    width:400px;
+    background:#fff;
+    margin:60px auto;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Heading */
+h2{
+    text-align:center;
+    color:#333;
+}
+
+/* Labels */
+label{
+    font-weight:bold;
+    margin-top:10px;
+    display:block;
+}
+
+/* Inputs */
+input, select{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    border-radius:5px;
+    border:1px solid #ccc;
+    box-sizing:border-box;
+}
+
+/* Button */
+button{
+    width:100%;
+    margin-top:15px;
+    padding:10px;
+    background:#4facfe;
+    border:none;
+    color:white;
+    font-size:16px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#007bff;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Student Registration Form</h2>
+
+<form>
+
+<label>Name</label>
+<input type="text" placeholder="Enter your name" required>
+
+<label>Email</label>
+<input type="email" placeholder="Enter your email" required>
+
+<label>Date of Birth</label>
+<input type="date" required>
+
+<label>Department</label>
+<select required>
+<option value="">Select Department</option>
+<option>CSE</option>
+<option>IT</option>
+<option>ECE</option>
+<option>EEE</option>
+<option>MECH</option>
+</select>
+
+<label>Phone Number</label>
+<input type="tel" placeholder="Enter phone number" required>
+
+<button type="submit">Register</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
