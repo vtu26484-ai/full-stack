@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Feedback Form</title>
+
+<style>
+/* ===== PAGE STYLE ===== */
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+
+/* ===== FORM CARD ===== */
+.container{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    width:350px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+h2{
+    text-align:center;
+}
+
+/* ===== INPUTS ===== */
+input, textarea, select{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:5px;
+    transition:0.3s;
+}
+
+/* Hover Highlight */
+input:hover, textarea:hover, select:hover{
+    border-color:#667eea;
+    background:#f0f3ff;
+}
+
+/* Error Style */
+.error{
+    border:2px solid red;
+}
+
+/* Success Style */
+.success{
+    border:2px solid green;
+}
+
+/* Button */
+button{
+    width:100%;
+    padding:12px;
+    background:#667eea;
+    color:white;
+    border:none;
+    border-radius:5px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#4c5bd4;
+}
+
+/* Message */
+#message{
+    text-align:center;
+    margin-top:10px;
+    font-weight:bold;
+    color:green;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>Customer Feedback</h2>
+
+<form id="feedbackForm">
+
+<input type="text" id="name" placeholder="Full Name"
+onkeyup="validateName()">
+
+<input type="email" id="email" placeholder="Email"
+onkeyup="validateEmail()">
+
+<select id="rating" onchange="validateRating()">
+<option value="">Select Rating</option>
+<option>Excellent</option>
+<option>Good</option>
+<option>Average</option>
+<option>Poor</option>
+</select>
+
+<textarea id="feedback" rows="4"
+placeholder="Your Feedback..."
+onkeyup="validateFeedback()"></textarea>
+
+<!-- Double Click Submit -->
+<button type="button" ondblclick="submitForm()">
+Double Click to Submit
+</button>
+
+</form>
+
+<div id="message"></div>
+</div>
+
+<script>
+
+/* ===== REUSABLE VALIDATION FUNCTION ===== */
+function setValidation(element, condition){
+    if(condition){
+        element.classList.remove("error");
+        element.classList.add("success");
+        return true;
+    }else{
+        element.classList.add("error");
+        element.classList.remove("success");
+        return false;
+    }
+}
+
+/* ===== NAME VALIDATION ===== */
+function validateName(){
+    let name=document.getElementById("name");
+    return setValidation(name, name.value.length >= 3);
+}
+
+/* ===== EMAIL VALIDATION ===== */
+function validateEmail(){
+    let email=document.getElementById("email");
+    let pattern=/^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    return setValidation(email, pattern.test(email.value));
+}
+
+/* ===== RATING VALIDATION ===== */
+function validateRating(){
+    let rating=document.getElementById("rating");
+    return setValidation(rating, rating.value !== "");
+}
+
+/* ===== FEEDBACK VALIDATION ===== */
+function validateFeedback(){
+    let feedback=document.getElementById("feedback");
+    return setValidation(feedback, feedback.value.length >= 10);
+}
+
+/* ===== SUBMIT FUNCTION (DOUBLE CLICK EVENT) ===== */
+function submitForm(){
+
+    let valid =
+        validateName() &&
+        validateEmail() &&
+        validateRating() &&
+        validateFeedback();
+
+    if(valid){
+        document.getElementById("message").innerHTML =
+        "✅ Feedback submitted successfully!";
+        document.getElementById("feedbackForm").reset();
+    }else{
+        document.getElementById("message").innerHTML =
+        "❌ Please fill all fields correctly.";
+    }
+}
+
+</script>
+
+</body>
+</html>
